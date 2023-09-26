@@ -1,0 +1,32 @@
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.gameboard {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 5px;
+    background-color: #fff;
+    border: 2px solid #000;
+    padding: 10px;
+    height: 450px;
+}
+
+.square{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #eee;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.square:hover {
+    background-color: #ddd;
+}

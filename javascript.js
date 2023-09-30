@@ -61,21 +61,54 @@ const Game = (player1, player2) => {
     };
 };
 
-const squares = document.querySelectorAll(".square");
+const startGameButton = document.getElementById('startGame');
+const player1NameInput = document.getElementById('player1Name');
+const player2NameInput = document.getElementById('player2Name');
+const currentPlayerDisplay = document.getElementById('current-player');
+const winnerDisplay = document.getElementById('winner');
 
-const player1 = Player('James', 'X');
+const game = Game();
+let player1, player2;
 
-const player2 = Player('Devon', 'O');
+startGameButton.addEventListener('click', () => {
+    // Get player names from input fields
+    const player1Name = player1NameInput.value || 'Player 1'; // Default to "Player 1"
+    const player2Name = player2NameInput.value || 'Player 2'; // Default to "Player 2"
 
-const game = Game(player1, player2);
+    // Create player objects
+    player1 = Player(player1Name, 'X');
+    player2 = Player(player2Name, 'O');
 
-squares.forEach((square, index) => {
-    square.addEventListener('click', () => {
-        if (!square.textContent &&  !game.getWinner()) {
-            square.textContent = game.getCurrentPlayer().symbol;
-            game.makeMove(index);
-        }
+    // Update the game with player names
+    const game = Game(player1, player2);
+
+    // Hide the player name input fields and show the game board
+    document.querySelector('.player-names').style.display = 'none';
+    document.querySelector('.gameboard').style.display = 'grid';
+
+    // Display the initial player
+    currentPlayerDisplay.textContent = `Current Player: ${game.getCurrentPlayer().name}`;
+
+    const squares = document.querySelectorAll(".square");
+
+    squares.forEach((square, index) => {
+        square.addEventListener('click', () => {
+            if (!square.textContent &&  !game.getWinner()) {
+                square.textContent = game.getCurrentPlayer().symbol;
+                game.makeMove(index);
+                currentPlayerDisplay.textContent = `Current Player: ${game.getCurrentPlayer().name}`;
+
+                const winner = game.getWinner();
+
+                if (winner){
+                    winnerDisplay.textContent = `Winner: ${game.getWinner().name}`;
+                    currentPlayerDisplay.style.display = 'none';
+                }
+            }
+        })
     })
-})
+});
+
+
 
 

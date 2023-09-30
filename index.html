@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="body">
+    <div class="player-names">
+      <label for="player1Name">Player 1 Name:</label>
+      <input type="text" id="player1Name" placeholder="Player 1" required />
+      <br />
+      <label for="player2Name">Player 2 Name:</label>
+      <input type="text" id="player2Name" placeholder="Player 2" required />
+      <br />
+      <button id="startGame">Start Game</button>
+    </div>
     <div class="gameboard">
       <div class="square" id="square-1"></div>
       <div class="square" id="square-2"></div>
@@ -18,6 +27,8 @@
       <div class="square" id="square-8"></div>
       <div class="square" id="square-9"></div>
     </div>
+    <div id="current-player"></div>
+    <div id="winner"></div>
     <script src="javascript.js"></script>
   </body>
 </html>
